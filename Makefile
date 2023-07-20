@@ -51,7 +51,7 @@ install:
 	install -m 644 kiwi.yml ${buildroot}etc/kiwi.yml
 
 tox:
-	tox "-n 5"
+	tox
 
 kiwi/schema/kiwi.rng: kiwi/schema/kiwi.rnc
 	# whenever the schema is changed this target will convert
@@ -131,9 +131,6 @@ build: clean tox
 		-e s"@%%MD5SUM@$${md5sums}@" > dist/PKGBUILD
 	# provide rpm rpmlintrc
 	cp package/python-kiwi-rpmlintrc dist
-
-pypi: clean tox
-	$(python) setup.py sdist upload
 
 clean: clean_git_attributes
 	$(python) setup.py clean
