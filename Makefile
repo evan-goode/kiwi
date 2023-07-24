@@ -132,6 +132,9 @@ build: clean tox
 	# provide rpm rpmlintrc
 	cp package/python-kiwi-rpmlintrc dist
 
+pypi: clean tox
+	$(python) setup.py sdist upload
+
 clean: clean_git_attributes
 	$(python) setup.py clean
 	rm -rf doc/build
